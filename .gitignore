@@ -1,0 +1,7 @@
+*.exe
+test.in
+test.cpp
+solve.cpp
+assist.cpp
+clangu.c
+.vscode
