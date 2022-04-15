@@ -4,15 +4,18 @@
 #define INF 2147483647
 using namespace std;
 typedef long long ll;
-bool cmp(pair<int, int> a, pair<int, int> b){
+// pair<int, int> point[100005];
+struct Data{
+    int first, second;
+};
+bool cmp(struct Data a, struct Data b){
     return a.first < b.first;
 }
 int main(){
     IOS
-    pair<int, int> point[100005];
-    freopen("C:\\Users\\admin\\Downloads\\P_15_2.in", "r", stdin);
-    
+    // freopen("C:\\Users\\admin\\Downloads\\P_15_2.in", "r", stdin);
     int n;
+    struct Data point[100005];
     cin >> n;
     cout << n << '\n';
     for(int i = 0;i < n;i++) cin >> point[i].first >> point[i].second;
