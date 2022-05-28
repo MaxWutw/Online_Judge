@@ -3,35 +3,24 @@
 using namespace std;
 typedef long long ll;
 int main(){
-	IOS
-	int a[15][15], b[105][105];
-	int s, t, n, m, r, a_sum = 0;
-	cin >> s >> t >> n >> m >> r;
-	for(int i = 0;i < s;i++){
-		for(int j = 0;j < t;j++){
-			cin >> a[i][j];
-			a_sum += a[i][j];
-		}
-	}
-	for(int i = 0;i < n;i++){
-		for(int j = 0;j < m;j++){
-			cin >> b[i][j];
-		}
-	}
-	int b_sum = 0, cnt = 0, max_sum = 0, min_cnt = 150;
-	for(int k = 0;k < n - s + 1;k++){
-		for(int i = k;i < s + k;i++){
-			for(int j = 0;j < m - t + 1;j++){
-				for(int f = j;f < t + j;f++){
-					if(b[i][f] != a[i][f]) cnt++;
-					else b_sum += b[i][f];
-					if(cnt > r) break;
-				}
-			}
-			min_cnt = min(min_cnt, cnt);
-			max_sum = max(max_sum, b_sum);
-		}
-	}
+    IOS
+    int n, k;
+    cin >> n >> k;
+    int arr[205][5], dp[205][5];
+    for(int i = 0;i < n;i++) cin >> arr[i][0] >> arr[i][1];
+    int tmp;
+    cin >> tmp >> tmp;
+    dp[0][0] = arr[0][0] + arr[0][1];
+    dp[0][1] = arr[0][0];
+    dp[0][1] = arr[0][1];
+    for(int i = 1;i < n;i++){
+        dp[i][0] = max(max(dp[i - 1][0], dp[i - 1][1]), dp[i - 1][2]) + arr[i][0] + arr[i][1];
+        dp[i][1] = max(dp[i - 1][0], dp[i - 1][1]) + arr[i][0];
+        dp[i][2] = max(dp[i - 1][0], dp[i - 1][2]) + arr[i][1];
+    }
+    for(int i = 0;i < n;i++){
+        
+    }
 
     return 0;
 }

@@ -1,3 +1,4 @@
+// array, loop
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
@@ -23,15 +24,10 @@ int main(){
 		for(int j = 0;j < m - t + 1;j++){
             cnt = 0;
             b_sum = 0;
-            bool judge = true;
             for(int i = 0;i < s;i++){
 				for(int f = 0;f < t;f++){
 					if(b[i + k][f + j] != a[i][f]) cnt++;
 					b_sum += b[i + k][f + j];
-					// if(cnt > r){
-                    //     judge = false;
-                    //     break;
-                    // }
 				}
 			}
 			if(cnt <= r){
