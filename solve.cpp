@@ -1,26 +1,23 @@
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
-typedef long long ll;
+int l, cost = 0, prime[1005];
+int is_prime(int num){
+    if(num == 2) return true;
+    int total = 0;
+    for(int i = 2;i < num;i++){
+        if(num % i == 0) break;
+    }
+}
+int solve(int l, int r){
+    for(int i = 2;i <= l;i++){
+        if(i )
+    }
+}
 int main(){
     IOS
-    int n, k;
-    cin >> n >> k;
-    int arr[205][5], dp[205][5];
-    for(int i = 0;i < n;i++) cin >> arr[i][0] >> arr[i][1];
-    int tmp;
-    cin >> tmp >> tmp;
-    dp[0][0] = arr[0][0] + arr[0][1];
-    dp[0][1] = arr[0][0];
-    dp[0][1] = arr[0][1];
-    for(int i = 1;i < n;i++){
-        dp[i][0] = max(max(dp[i - 1][0], dp[i - 1][1]), dp[i - 1][2]) + arr[i][0] + arr[i][1];
-        dp[i][1] = max(dp[i - 1][0], dp[i - 1][1]) + arr[i][0];
-        dp[i][2] = max(dp[i - 1][0], dp[i - 1][2]) + arr[i][1];
-    }
-    for(int i = 0;i < n;i++){
-        
-    }
+    cin >> l;
+    solve(1, 10);
 
     return 0;
 }
