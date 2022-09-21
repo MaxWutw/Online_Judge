@@ -17,7 +17,6 @@ int main(){
         for(int i = 0;i < m;i++){
             cin >> a >> b;
             a = find(a);
-            cout << p[a] << '\n';
             b = find(b);
             if(a != b){
                 p[a] += p[b];
