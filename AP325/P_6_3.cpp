@@ -1,5 +1,5 @@
 // dp
-// warning:在吳邦一教授的講義裡是使用2 < n <= 1e5的側資範圍，但在中一中的judge中則是n <= 1e5的範圍，務必注意!
+// warning:在吳邦一教授的講義裡是使用2 < n <= 1e5的測資範圍，但在中一中的judge中則是n <= 1e5的範圍，務必注意!
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
