@@ -1,38 +1,48 @@
-#include <iostream>
+// Kruskal's algorithm
+#include <bits/stdc++.h>
+#define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
-class Parent{
-protected:
-    int data = 67855;
-private:
-    int pri = -10;
-public:
-    int pub = 100;
-    void print();
-    void number(int &a);
-};
-void Parent::print(){
-        cout << "Hello World" << endl;
-}
-void Parent::number(int &a){
-    cout << a << endl;
-}
-class Child: public Parent{
-public:
-    void get_pro(){
-        cout << pub << endl;
-    }
-    void get_data(){
-        cout << data << endl;
-    }
-    void get_pri(){
-        cout << pri << endl;
+int parent[10005];
+struct Edge{
+    int u, v, w;
+    bool operator < (Edge &b){
+        return w < b.w;
     }
 };
+int query(int a){
+    if(parent[a] < 0) return a;
+    return parent[a] = query(parent[a]);
+}
+bool merge(int a, int b){
+    int r1 = query(a);
+    int r2 = query(b);
+    if(r1 == r2) return false;
+    if(parent[r1] < parent[r2]) parent[r2] = r1;
+    else parent[r1] = r2;
+    return true;
+}
 int main(){
-    Child c;
-    c.get_data();
-    c.get_pri();
-    c.get_pro();
+    IOS
+    int n, m;
+    memset(parent, -1, sizeof(parent));
+    cin >> n >> m;
+    vector<Edge> adj;
+    for(int i = 0;i < m;i++){
+        int u, v, w;
+        cin >> u >> v >> w;
+        adj.push_back({u, v, w});
+    }
+    sort(adj.begin(), adj.end());
+    // for(int i = 0;i < m;i++) cout << adj[i].w << ' ';
+    int cost = 0, n_edge = 0;
+    for(Edge e : adj){
+        if(merge(e.u, e.v)){
+            cost += e.w;
+            n_edge++;
+        }
+    }
+    if(n_edge == n - 1) cout << cost << '\n';
+    else cout << -1 << '\n';
 
     return 0;
 }
