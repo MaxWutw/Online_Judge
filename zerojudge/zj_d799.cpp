@@ -1,3 +1,4 @@
+// BIT
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
@@ -7,9 +8,6 @@ ll arr[500005];
 ll c1[500005], c2[500005];
 class BIT{
 public:
-    // BIT(){
-    // }
-    // void init();
     void update(int x, int k);
     ll query(int x);
     inline void range_update(int x, int y, int k){
@@ -21,13 +19,6 @@ public:
 private:
     inline int lowbit(int x) { return (x & -x); };
 };
-// void BIT::init(){
-//     for(int i = 1;i <= n;i++){
-//         tree[i] += arr[i];
-//         int j = i + lowbit(i);
-//         if(j <= n) tree[j] += tree[i];
-//     }
-// }
 void BIT::update(int x, int k){
     ll i = x;
     while(x <= n){
@@ -62,12 +53,10 @@ int main(){
         cin >> v;
         if(v == 1){
             cin >> x >> y >> k;
-            // bit.update(x, y, k);
             bit.range_update(x, y, k);
         } 
         else{
             cin >> x >> y;
-            // cout << bit.query(x, y) << '\n';
             cout << bit.range_query(x, y) << '\n';
         }
 
