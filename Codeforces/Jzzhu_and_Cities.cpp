@@ -3,37 +3,42 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-vector<pair<int, int> > adj[300005];
-int dis[200005];
+int n, m;
+vector<vector<pair<int, int> > > adj;
 int main(){
     IOS
-    int n, m, k;
-    cin >> n >> m >> k;
+    cin >> n >> m;
+    adj.resize(n + 10);
+    int dis[n + 10];
+    memset(dis, INF, sizeof(dis));
     for(int i = 0;i < m;i++){
-        int u, v, x;
-        cin >> u >> v >> x;
-        adj[u].push_back({v, x});
-        adj[v].push_back({u, x});
+        int u, v, w;
+        cin >> u >> v >> w;
+        u--, v--;
+        adj[v].push_back({u, w});
+        adj[u].push_back({v, w});
     }
-    while(k--){
-        memset(dis, INF, sizeof(dis));
-        priority_queue<pair<int, int>, vector<pair<int, int> >, greater<> > pq;
-        int a, b;
-        cin >> a >> b;
-        dis[a] = 0;
-        pq.push({0, a});
-        while(!pq.empty()){
-            pair<int, int> cur = pq.top();
-            pq.pop();
-            for(auto i : adj[cur.second]){
-                if(cur.first + i.first < dis[i.second]){
-                    dis[i.second] = cur.first + i.first;
-                    pq.push({dis[i.second], i.second});
+    queue<int> q;
+    bool inque[n + 10];
+    memset(inque, 0, sizeof(inque));
+    inque[0] = true;
+    dis[0] = 0; 
+    q.push(0);
+    while(!q.empty()){
+        int cur = q.front();
+        q.pop();
+        inque[cur] = false;
+        for(auto e : adj[cur]){
+            if(dis[e.first] > dis[cur] + e.second){
+                dis[e.first] = dis[cur] + e.second;
+                if(!inque[e.first]){
+                    inque[e.first] = true;
+                    q.push(e.first);
                 }
             }
         }
-        cout << dis[b] << '\n';
     }
+    cout << dis[n - 1] << '\n';
 
     return 0;
 }
