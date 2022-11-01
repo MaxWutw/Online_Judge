@@ -3,36 +3,21 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-vector<ll> board(200005), post(5005);
-int n, k;
+ll arr[200005];
+vector<pair<int, int> > vec;
 int main(){
     IOS
-    cin >> n >> k;
-    for(int i = 1;i <= n;i++) cin >> board[i];
-    for(int i = 1;i <= k;i++) cin >> post[i];
-    int l = 1, r = 1000000001;
-    while(l < r - 1){
-        int mid = (l + r) >> 1;
-        int cnt = 0, cur = 1;
-        bool judge = false;
-        for(int i = 1;i <= n;i++){
-            if(board[i] >= mid){
-                cnt++;
-                if(cnt == post[cur]){
-                    cnt = 0;
-                    if(cur == k){
-                        judge = true;
-                        break;
-                    }
-                    cur++;
-                }
-            }
-            else cnt = 0;
-        }
-        if(judge) l = mid;
-        else r = mid;
+    int n, q;
+    cin >> n >> q;
+    for(int i = 0;i < n;i++) cin >> arr[i];
+    for(int i = 0;i < q;i++){
+        int l, r;
+        cin >> l >> r;
+        vec.push_back({l, r});
     }
-    cout << l << '\n';
-
+    for(int i = 0;i < q;i++){
+        
+    }
+    
     return 0;
 }
