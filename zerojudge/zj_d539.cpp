@@ -1,3 +1,65 @@
+// Segment Tree
+#include <bits/stdc++.h>
+#define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define L(x) (x << 1)
+#define R(x) ((x << 1) | 1)
+using namespace std;
+typedef long long ll;
+int n, m;
+ll seg[500005 << 2];
+struct Node{
+    int left, right;
+    int tag;
+    int value;
+};
+ll pull(int x){
+    return seg[x] = max(seg[L(x)], seg[R(x)]);
+}
+void build(int x, int l, int r){
+    if(l == r){
+        cin >> seg[x];
+        return;
+    }
+    int mid = (l + r) >> 1;
+    build(L(x), l, mid);
+    build(R(x), mid + 1, r);
+    pull(x);
+}
+void update(int x, int l, int r, int pos, int val){
+    if(l == r){
+        seg[x] += val;
+        return;
+    }
+    int mid = (l + r) >> 1;
+    if(pos >= mid) update(L(x), l, mid, pos, val);
+    else update(R(x), mid + 1, r, pos, val);
+    pull(x);
+}
+ll query(int x, int l, int r, int ql, int qr){
+    if(ql <= l && qr >= r)
+        return seg[x];
+    ll ret = 0;
+    int mid = (l + r) >> 1;
+    if(qr <= mid) return query(L(x), l, mid, ql, qr);
+    else if(ql > mid) return query(R(x), mid + 1, r, ql, qr);
+    return max(query(L(x), l, mid, ql, mid), query(R(x), mid + 1, r, mid + 1, qr));
+}
+int main(){
+    IOS
+    cin >> n;
+    build(1, 1, n);
+    cin >> m;
+    while(m--){
+        int l, r;
+        cin >> l >> r;
+        if(l > r) swap(l, r);
+        cout << query(1, 1, n, l, r) << '\n';
+    }
+
+    return 0;
+}
+
+
 // 60%
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
