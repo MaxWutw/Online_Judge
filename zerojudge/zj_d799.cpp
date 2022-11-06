@@ -64,3 +64,6 @@ int main(){
 
     return 0;
 }
+
+
+// Segment Tree + lazy tag

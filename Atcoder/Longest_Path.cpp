@@ -27,7 +27,7 @@ int main(){
         for(int edge : adj[u]){
             cnt[edge]++;
             if(!--indegree[edge]) q.push(edge);
-        }z
+        }
     }
     cout << ans << '\n';
 
