@@ -3,23 +3,19 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-ll arr[100005];
-vector<int> vec;
-ll ans = 0;
-int dfs(int v){
-    if(vec[v] == 0) return 0;
-    for(int i = 0;i < 2 + ((vec[v] & 1)? 1 : 0);i++){
-        int next = dfs(v++);
-        ans += abs(vec[v] - vec[next]);
+const ll MOD = 1000000007;
+ll fp(ll a, ll b){
+    int ans = 1;
+    while(b > 0){
+        if(b & 1) ans = ans * a % MOD;
+        a = a * a % MOD;
+        b >>= 1;
     }
-    return v;
+    return ans;
 }
 int main(){
     IOS
-    int tmp;
-    while(cin >> tmp) vec.push_back(tmp);
-    dfs(0);
-    cout << ans << '\n';
+    cout << fp(2584, 365435296162) << '\n';
 
     return 0;
 }

@@ -11,7 +11,7 @@ struct Matrix{
         for(int i = 0;i < 2;i++){
             for(int j = 0;j < 2;j++){
                 for(int k = 0;k < 2;k++){
-                    tmp.mat[i][j] = ((tmp.mat[i][j] + (mat[i][k]) * (inp.mat[k][j])));
+                    tmp.mat[i][j] = ((tmp.mat[i][j] + (mat[i][k] % mod) * (inp.mat[k][j] % mod)) % mod) % mod;
                 }
             }
         }
@@ -20,6 +20,7 @@ struct Matrix{
 };
 Matrix matrix_pow(ll exp){
     Matrix res, base;
+
     res.mat[0][0] = 1;
     res.mat[0][1] = 0;
     res.mat[1][0] = 1;
