@@ -13,12 +13,8 @@ int main(){
         int coin, pre = 0, cnt = 0, sum = 0;
         for(int i = 0;i < n;i++){
             cin >> coin;
-            if(coin <= sum) sum = sum + coin - pre;
-            else{
-                sum += coin;
-                cnt++;
-            }
-            pre = coin;
+            if(coin >= sum) sum = sum + coin - pre;
+            else sum += coin;
         }
         cout << cnt << '\n';
     }
