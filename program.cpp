@@ -4,7 +4,7 @@ using namespace std;
 typedef long long ll;
 int main(){
 	IOS
-	cout << (char)82;
+	cout << (int)'0';
 	
 	return 0;
 }
