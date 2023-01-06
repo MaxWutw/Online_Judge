@@ -5,7 +5,6 @@ using namespace std;
 typedef long long ll;
 int main(){
     IOS
-    cout << (1 << 5) << '\n';
 
     return 0;
 }
