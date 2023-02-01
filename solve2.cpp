@@ -4,8 +4,9 @@ using namespace std;
 typedef long long ll;
 int main(){
     IOS
-    int a = -10;
-    cout << 10 - a << '\n';
+    string str = "12345";
+    str += '0';
+    cout << str;
 
     return 0;
 }
