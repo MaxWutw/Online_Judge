@@ -25,7 +25,7 @@ Matrix fast_pow(int n){
         Matrix res = fast_pow(n >> 1);
         return res * res;
     }
-    Matrix res = fast_pow((n - 1) / 2);
+    Matrix res = fast_pow(n >> 1);
     return base * res * res;
 }
 int main(){
