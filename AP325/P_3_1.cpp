@@ -32,7 +32,7 @@ int main(){
         h[p] = max(h[p], h[v] + 1);
         if(--deg[p] == 0) q.push(p);
     }
-    cout << root << ' ' << total << '\n';
+    cout << root << '\n' << total << '\n';
 
     return 0;
 }
