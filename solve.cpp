@@ -5,22 +5,28 @@ typedef long long ll;
 int main(){
     IOS
     string str;
-    while(cin >> str){
-        bool judge = true;
-        stack<char> s;
-        for(int i = 0;i < str.size();i++){
-            if(str[i] == '(' || str[i] == '[' || str[i] == '{') s.push(str[i]);
-            else{
-                if(s.empty() || (s.top() == '(' && str[i] != ')') || (s.top() == '[' && str[i] != ']') || (s.top() == '{' && str[i] != '}')){
-                    judge = false;
-                    break;
-                }
+    cin >> str;
+    ll num = str[0] - 48;
+    stack<int> s;
+    for(int i = 1;i < str.size() - 1;i+=2){
+        if(str[i] == '*') num *= (str[i + 1] - 48);
+        else if(str[i] == '/') num /= (str[i + 1] - 48);
+        else if(str[i] == '-'){
+            if(!s.empty()){
+                s.top() -= num;
                 s.pop();
             }
+            else s.push((str[i + 1] - 48));
         }
-        if(!s.empty()) judge = false;
-        cout << (judge ? "yes" : "no") << '\n';
+        else if(str[i] == '+'){
+            if(!s.empty()){
+                s.top() += num;
+                s.pop();
+            }
+            else s.push((str[i + 1] - 48));
+        }
     }
+    cout << num << '\n';
 
     return 0;
 }
