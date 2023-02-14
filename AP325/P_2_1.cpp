@@ -1,25 +1,22 @@
 // sort
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-#define INF 2147483647
 using namespace std;
 typedef long long ll;
-ll n, arr[100005], des[100005];
+int n, arr[100005];
+int add[100005];
 int main(){
     IOS
     cin >> n;
-    ll tmp;
     for(int i = 0;i < n;i++) cin >> arr[i];
     sort(arr, arr + n);
-    des[0] = arr[0];
-    int idx = 1;
+    add[0] = arr[0];
+    int ans = 1;
     for(int i = 1;i < n;i++){
-        if(arr[i - 1] != arr[i]){
-            des[idx++] = arr[i];
-        }
+        if(arr[i - 1] != arr[i]) add[ans++] = arr[i];
     }
-    cout << idx << '\n';
-    for(int i = 0;i < idx;i++) cout << des[i] << ' ';
+    cout << ans << '\n';
+    for(int i = 0;i < ans;i++) cout << add[i] << ' ';
 
     return 0;
 }
