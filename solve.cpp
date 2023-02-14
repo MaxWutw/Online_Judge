@@ -3,7 +3,6 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-<<<<<<< HEAD
 int arr[200005];
 int main(){
     IOS
@@ -20,42 +19,6 @@ int main(){
         s.push(i);
     }
     cout << ans << '\n';
-    
-=======
-int main(){
-    IOS
-    string str;
-    cin >> str;
-    ll num = str[0] - 48;
-    stack<int> s;
-    for(int i = 1;i < str.size();i+=2){
-        if(str[i] == '*') num *= (str[i + 1] - 48);
-        else if(str[i] == '/') num /= (str[i + 1] - 48);
-        else if(str[i] == '-'){
-            if(!s.empty()){
-                num = s.top() - num;
-                s.pop();
-                s.push(num);
-            }
-            else{
-                s.push(num);
-                num = str[i + 1];
-            }
-        }
-        else if(str[i] == '+'){
-            if(!s.empty()){
-                num = s.top() + num;
-                s.pop();
-                s.push(num);
-            }
-            else{
-                s.push(num);
-                num = str[i + 1];
-            }
-        }
-    }
-    cout << num << '\n';
 
->>>>>>> refs/remotes/origin/master
     return 0;
 }
