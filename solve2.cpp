@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+<<<<<<< HEAD
 #define INF 0x3f3f3f3f;
+=======
+>>>>>>> refs/remotes/origin/master
 using namespace std;
 typedef long long ll;
 ll x[505], y[505];
@@ -13,6 +16,7 @@ void print_ans(ll output[]){
 }
 int main(){
     IOS
+<<<<<<< HEAD
     string a, b, op;
     cin >> a >> b >> op;
     cout << a << ' ' << op << ' ' << b;
@@ -40,6 +44,9 @@ int main(){
     else if(op == "/"){
 
     }
+=======
+    cout << int('0') << '\n';
+>>>>>>> refs/remotes/origin/master
 
     return 0;
 }
