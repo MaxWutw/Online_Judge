@@ -3,15 +3,13 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-ll p[200005], h[200005], add[200005];
+ll p[200005], h[200005];
 int main(){
     IOS
     int n;
     cin >> n;
     for(int i = 1;i <= n;i++) cin >> h[i];
     for(int i = 1;i <= n;i++) cin >> p[i];
-    add[0] = INF;
-    for(int i = 1;i <= n;i++) add[i] = p[i] + h[i];
     ll ans = 0;
     map<int, int> m;
     m[h[1]] = 1;
