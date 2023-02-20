@@ -3,26 +3,32 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-ll arr[200005];
+int arr[200005], cnt[200005];
+map<int, int> dic;
 int main(){
     IOS
-    int n, k;
-    cin >> n >> k;
-    for(int i = 0;i < n;i++) cin >> arr[i];
-    ll best = 0, total = 0, cur = 0;
-    for(int l = 0, r = 0;r < n;r++){
-        cur += arr[r];
-        while(cur > k){
-            cur -= arr[l];
+    int n;
+    memset(cnt, 0, sizeof(cnt));
+    cin >> n;
+    for(int i = 0;i < n;i++){
+        cin >> arr[i];
+        dic[arr[i]] = 0;
+    }
+    int c = 0;
+    for(auto &i : dic) i.second = c++;
+    int l = 0, r = 0, best = n, cur = 0;
+    while(r < n){
+        cnt[dic[arr[r]]]++;
+        if(cnt[dic[arr[r]]] == 1) cur++;
+        r++;
+        while(true){
+            if(cnt[dic[arr[l]]] == 1) break;
+            cnt[dic[arr[l]]]--;
             l++;
         }
-        if(cur > best){
-            best = cur;
-            total = 1;
-        }
-        else if(cur == best) total++;
+        if(cur == c) best = min(best, r - l);
     }
-    cout << best << '\n' << total << '\n';
+    cout << best << '\n';
 
     return 0;
 }
