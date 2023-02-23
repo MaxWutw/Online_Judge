@@ -3,20 +3,25 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
+bool cmp(pair<int, int> &a, pair<int, int> &b){
+    if(a.second == b.second) return a.first < b.first;
+    return a.second < b.second;
+}
 int main(){
     IOS
-    int n, arr[100005];
+    int n;
     cin >> n;
-    for(int i = 0;i < n;i++) cin >> arr[i];
-    sort(arr, arr + n);
-    ll prefix[100005];
-    prefix[0] = arr[0];
-    for(int i = 1;i < n;i++){
-        prefix[i] = arr[i] + prefix[i - 1];
-    }
-    ll total = 0;
+    pair<int, int> arr[100005];
     for(int i = 0;i < n;i++){
-        total += prefix[i];
+        cin >> arr[i].first >> arr[i].second;
+    }
+    sort(arr, arr + n, cmp);
+    int endtime = arr[0].second, total = 1;
+    for(int i = 1;i < n;i++){
+        if(arr[i].first > endtime){
+            total++;
+            endtime = arr[i].second;
+        }
     }
     cout << total << '\n';
 
