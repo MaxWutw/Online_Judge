@@ -5,29 +5,20 @@ using namespace std;
 typedef long long ll;
 int main(){
     IOS
-    int n;
+    int n, arr[100005];
     cin >> n;
-    priority_queue<int> a, b;
+    for(int i = 0;i < n;i++) cin >> arr[i];
+    sort(arr, arr + n);
+    ll prefix[100005];
+    prefix[0] = arr[0];
+    for(int i = 1;i < n;i++){
+        prefix[i] = arr[i] + prefix[i - 1];
+    }
+    ll total = 0;
     for(int i = 0;i < n;i++){
-        int tmp;
-        cin >> tmp;
-        a.push(tmp);
+        total += prefix[i];
     }
-    for(int i = 0;i < n;i++){
-        int tmp;
-        cin >> tmp;
-        b.push(tmp);
-    }
-    int win = 0;
-    while(!a.empty()){
-        if(b.top() > a.top()){
-            b.pop();
-            a.pop();
-            win++;
-        }
-        else a.pop();
-    }
-    cout << win << '\n';
+    cout << total << '\n';
 
     return 0;
 }
