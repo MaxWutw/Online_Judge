@@ -1,28 +1,25 @@
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define INF 0x3f3f3f3f
 using namespace std;
-struct work{
-    long long t, w;
-};
-
-bool cmp(struct work a, struct work b){
-    return a.t * b.w < b.t * a.w;
+typedef long long ll;
+bool cmp(pair<int, int> &a, pair<int, int> &b){
+    return a.first * b.second < a.second * b.first;
 }
-
 int main(){
     IOS
-    struct work item[100005];
     int n;
     cin >> n;
-    for(int i = 0;i < n;i++) cin >> item[i].t;
-    for(int i = 0;i < n;i++) cin >> item[i].w;
-    sort(item, item+n, cmp);
-    long long total = 0, timing = 0;
+    pair<int, int> job[100005];
+    for(int i = 0;i < n;i++) cin >> job[i].first;
+    for(int i = 0;i < n;i++) cin >> job[i].second;
+    sort(job, job + n, cmp);
+    ll penalty = 0, timestep = 0;
     for(int i = 0;i < n;i++){
-        timing += item[i].t;
-        total += (timing * item[i].w);
+        penalty += (job[i].first + timestep) * job[i].second;
+        timestep += job[i].first;
     }
-    cout << total << '\n';
+    cout << penalty << '\n';
 
     return 0;
 }
