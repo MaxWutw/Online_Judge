@@ -10,16 +10,16 @@ int main(){
     IOS
     int n;
     cin >> n;
-    pair<int, int> job[100005];
-    for(int i = 0;i < n;i++) cin >> job[i].first;
-    for(int i = 0;i < n;i++) cin >> job[i].second;
-    sort(job, job + n, cmp);
-    ll penalty = 0, timestep = 0;
-    for(int i = 0;i < n;i++){
-        penalty += (job[i].first + timestep) * job[i].second;
-        timestep += job[i].first;
+    pair<int, int> arr[100005];
+    for(int i = 0;i < n;i++) cin >> arr[i].first;
+    for(int i = 0;i < n;i++) cin >> arr[i].second;
+    sort(arr, arr + n, cmp);
+    ll energy = arr[0].first, total = 0;
+    for(int i = 1;i < n;i++){
+        total += (energy * arr[i].second);
+        energy += arr[i].first;
     }
-    cout << penalty << '\n';
+    cout << total << '\n';
 
     return 0;
 }
