@@ -3,23 +3,26 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-bool cmp(pair<int, int> &a, pair<int, int> &b){
-    return a.first * b.second < a.second * b.first;
-}
 int main(){
     IOS
+    priority_queue<ll> pq;
     int n;
     cin >> n;
-    pair<int, int> arr[100005];
-    for(int i = 0;i < n;i++) cin >> arr[i].first;
-    for(int i = 0;i < n;i++) cin >> arr[i].second;
-    sort(arr, arr + n, cmp);
-    ll energy = arr[0].first, total = 0;
-    for(int i = 1;i < n;i++){
-        total += (energy * arr[i].second);
-        energy += arr[i].first;
+    for(int i = 0;i < n;i++){
+        ll tmp;
+        cin >> tmp;
+        pq.push(-tmp);
     }
-    cout << total << '\n';
+    ll total = 0;
+    for(int i = 0;i < n - 1;i++){
+        int tmp = pq.top();
+        pq.pop();
+        tmp += pq.top();
+        pq.pop();
+        pq.push(tmp);
+        total += tmp;
+    }
+    cout << -pq.top() << '\n' << -total << '\n';
 
     return 0;
 }

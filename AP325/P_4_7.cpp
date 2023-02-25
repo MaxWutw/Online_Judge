@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
 int main(){
@@ -10,16 +11,16 @@ int main(){
     for(int i = 0;i < n;i++){
         ll tmp;
         cin >> tmp;
-        pq.push(-(ll)tmp);
+        pq.push(-tmp);
     }
     ll total = 0;
-    for(int i = 0;i < n-1;i++){
-        ll x = pq.top();
+    for(int i = 0;i < n - 1;i++){
+        int tmp = pq.top();
         pq.pop();
-        x += pq.top();
+        tmp += pq.top();
         pq.pop();
-        pq.push(x);
-        total += x;
+        pq.push(tmp);
+        total += tmp;
     }
     cout << -pq.top() << '\n' << -total << '\n';
 
