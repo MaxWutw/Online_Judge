@@ -5,24 +5,22 @@ using namespace std;
 typedef long long ll;
 int main(){
     IOS
-    priority_queue<ll> pq;
-    int n;
-    cin >> n;
+    ll n, m, arr[200005];
+    cin >> n >> m;
+    for(int i = 0;i < n;i++) cin >> arr[i];
+    priority_queue<ll, vector<ll>, greater<ll> > pq;
     for(int i = 0;i < n;i++){
-        ll tmp;
-        cin >> tmp;
-        pq.push(-tmp);
+        if(pq.size() < m){
+            pq.push(arr[i]);
+        }
+        else{
+            ll tmp = pq.top() + arr[i];
+            pq.pop();
+            pq.push(tmp);
+        }
     }
-    ll total = 0;
-    for(int i = 0;i < n - 1;i++){
-        int tmp = pq.top();
-        pq.pop();
-        tmp += pq.top();
-        pq.pop();
-        pq.push(tmp);
-        total += tmp;
-    }
-    cout << -pq.top() << '\n' << -total << '\n';
+    for(int i = 0;i < n - 1;i++) pq.pop();
+    cout << pq.top() << '\n';
 
     return 0;
 }
