@@ -5,15 +5,19 @@ using namespace std;
 typedef long long ll;
 int main(){
     IOS
-    int n, arr[100005];
+    int n;
     cin >> n;
-    for(int i = 0;i < n;i++) cin >> arr[i];
-    int dif = 0, minimum = INF;
+    pair<int, int> coord[100005];
+    for(int i = 0;i < n;i++) cin >> coord[i].first;
+    for(int i = 0;i < n;i++) cin >> coord[i].second;
+    sort(coord, coord + n);
+    stack<pair<int, int> > s;
+    s.push({INF, INF});
     for(int i = 0;i < n;i++){
-        dif = max(dif, arr[i] - minimum);
-        minimum = min(minimum, arr[i]);
+        while(s.top().second <= coord[i].second) s.pop();
+        s.push(coord[i]);
     }
-    cout << dif << '\n';
+    cout << s.size() - 1 << '\n';
 
     return 0;
 }

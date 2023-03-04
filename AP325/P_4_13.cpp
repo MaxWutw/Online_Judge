@@ -11,7 +11,7 @@ int main(){
     for(int i = 0;i < n;i++){
         ll num;
         cin >> num;
-        prefix = (prefix > 0)? num + prefix : num;
+        prefix = (prefix > 0) ? num + prefix : num;
         max_num = max(max_num, prefix);
     }
     cout << max_num << '\n';
