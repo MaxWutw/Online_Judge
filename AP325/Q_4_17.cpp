@@ -1,31 +1,29 @@
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-bool cmp(pair<ll, ll> a, pair<ll, ll> b){
+bool cmp(pair<int, int> &a, pair<int, int> &b){
     return a.second < b.second;
 }
 int main(){
     IOS
-    int n, t;
+    int t;
     cin >> t;
     while(t--){
+        int n;
         cin >> n;
-        pair<ll, ll> task[100005];
-        for(int i = 0;i < n;i++) cin >> task[i].first;
-        for(int i = 0;i < n;i++) cin >> task[i].second;
-        sort(task, task + n, cmp);
-        ll timestep = 0;
+        pair<int, int> ass[100005];
+        for(int i = 0;i < n;i++) cin >> ass[i].first;
+        for(int i = 0;i < n;i++) cin >> ass[i].second;
+        sort(ass, ass + n, cmp);
+        int tp = 0;
         bool judge = true;
         for(int i = 0;i < n;i++){
-            timestep += task[i].first;
-            if(timestep > task[i].second){
-                judge = false;
-                break;
-            }
+            tp += ass[i].first;
+            if(tp > ass[i].second) judge = false;
         }
-        if(judge) cout << "yes" << '\n';
-        else cout << "no" << '\n';
+        cout << (judge ? "yes" : "no") << '\n';
     }
 
     return 0;

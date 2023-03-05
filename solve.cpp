@@ -3,28 +3,28 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
+bool cmp(pair<int, int> &a, pair<int, int> &b){
+    return a.second < b.second;
+}
 int main(){
     IOS
-    int n;
-    pair<int, int> arr[100005];
-    cin >> n;
-    for(int i = 0;i < n;i++) cin >> arr[i].first >> arr[i].second;
-    sort(arr, arr + n);
-    int min_dis = INF;
-    map<int, int> m;
-    for(int i = 0;i < n;i++){
-        auto it = m.lower_bound(arr[i].second - min_dis);
-        while(it != m.end() && it->first <= arr[i].second + min_dis){
-            if(it->second < arr[i].first - min_dis){
-                it = m.erase(it);
-                continue;
-            }
-            min_dis = min(min_dis, abs(it->second - arr[i].first) + abs(it->first - arr[i].second));
-            it++;
+    int t;
+    cin >> t;
+    while(t--){
+        int n;
+        cin >> n;
+        pair<int, int> ass[100005];
+        for(int i = 0;i < n;i++) cin >> ass[i].first;
+        for(int i = 0;i < n;i++) cin >> ass[i].second;
+        sort(ass, ass + n, cmp);
+        int tp = 0;
+        bool judge = true;
+        for(int i = 0;i < n;i++){
+            tp += ass[i].first;
+            if(tp > ass[i].second) judge = false;
         }
-        m.insert({arr[i].second, arr[i].first});
+        cout << (judge ? "yes" : "no") << '\n';
     }
-    cout << min_dis << '\n';
 
     return 0;
 }
