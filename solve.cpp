@@ -3,31 +3,17 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-ll n, d, t[100005];
-bool judge(int cnt){
-    priority_queue<ll, vector<ll>, greater<ll> >  pq;
-    for(int i = 0;i < n;i++){
-        if(pq.size() < cnt) pq.push(t[i]);
-        else{
-            ll tmp = pq.top() + t[i];
-            pq.pop();
-            pq.push(tmp);
-        }
-    }
-    for(int i = 0;i < cnt - 1;i++) pq.pop();
-    return (pq.top() <= d ? true : false);
+struct Data{
+    int m, s, t;
 }
 int main(){
     IOS
-    cin >> n >> d;
-    for(int i = 0;i < n;i++) cin >> t[i];
-    int counter = n;
-    for(int jump = n / 2;jump > 0;jump >>= 1){
-        while(counter - jump > 0 && judge(counter - jump)){
-            counter -= jump;
-        }
-    }
-    cout << counter << '\n';
+    int n;
+    pair<int, int> tp[100005];
+    cin >> n;
+    for(int i = 0;i < n;i++) cin >> tp[i].first;
+    for(int i = 0;i < n;i++) cin >> tp[i].second;
+
 
     return 0;
 }
