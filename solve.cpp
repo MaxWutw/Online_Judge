@@ -6,18 +6,25 @@ typedef long long ll;
 int main(){
     IOS
     int n;
+    pair<int, int> arr[100005];
     cin >> n;
-    pair<int, int> coord[100005];
-    for(int i = 0;i < n;i++) cin >> coord[i].first;
-    for(int i = 0;i < n;i++) cin >> coord[i].second;
-    sort(coord, coord + n);
-    stack<pair<int, int> > s;
-    s.push({INF, INF});
+    for(int i = 0;i < n;i++) cin >> arr[i].first >> arr[i].second;
+    sort(arr, arr + n);
+    int min_dis = INF;
+    map<int, int> m;
     for(int i = 0;i < n;i++){
-        while(s.top().second <= coord[i].second) s.pop();
-        s.push(coord[i]);
+        auto it = m.lower_bound(arr[i].second - min_dis);
+        while(it != m.end() && it->first <= arr[i].second + min_dis){
+            if(it->second < arr[i].first - min_dis){
+                it = m.erase(it);
+                continue;
+            }
+            min_dis = min(min_dis, abs(it->second - arr[i].first) + abs(it->first - arr[i].second));
+            it++;
+        }
+        m.insert({arr[i].second, arr[i].first});
     }
-    cout << s.size() - 1 << '\n';
+    cout << min_dis << '\n';
 
     return 0;
 }
