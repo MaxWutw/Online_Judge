@@ -19,7 +19,7 @@ int main(){
             pq.push(tmp);
         }
     }
-    for(int i = 0;i < n - 1;i++) pq.pop();
+    for(int i = 0;i < m - 1;i++) pq.pop();
     cout << pq.top() << '\n';
 
     return 0;

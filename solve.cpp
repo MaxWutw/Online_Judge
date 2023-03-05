@@ -3,28 +3,31 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-bool cmp(pair<int, int> &a, pair<int, int> &b){
-    return a.second < b.second;
+ll n, d, t[100005];
+bool judge(int cnt){
+    priority_queue<ll, vector<ll>, greater<ll> >  pq;
+    for(int i = 0;i < n;i++){
+        if(pq.size() < cnt) pq.push(t[i]);
+        else{
+            ll tmp = pq.top() + t[i];
+            pq.pop();
+            pq.push(tmp);
+        }
+    }
+    for(int i = 0;i < cnt - 1;i++) pq.pop();
+    return (pq.top() <= d ? true : false);
 }
 int main(){
     IOS
-    int t;
-    cin >> t;
-    while(t--){
-        int n;
-        cin >> n;
-        pair<int, int> ass[100005];
-        for(int i = 0;i < n;i++) cin >> ass[i].first;
-        for(int i = 0;i < n;i++) cin >> ass[i].second;
-        sort(ass, ass + n, cmp);
-        int tp = 0;
-        bool judge = true;
-        for(int i = 0;i < n;i++){
-            tp += ass[i].first;
-            if(tp > ass[i].second) judge = false;
+    cin >> n >> d;
+    for(int i = 0;i < n;i++) cin >> t[i];
+    int counter = n;
+    for(int jump = n / 2;jump > 0;jump >>= 1){
+        while(counter - jump > 0 && judge(counter - jump)){
+            counter -= jump;
         }
-        cout << (judge ? "yes" : "no") << '\n';
     }
+    cout << counter << '\n';
 
     return 0;
 }

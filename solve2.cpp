@@ -3,14 +3,24 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-bool cmp(int a, int b){
-    return a < b;
-}
 int main(){
     IOS
-    int arr[10] = {42, 32, 55, 5, 83, 9, 63};
-    sort(arr, arr + 7, cmp);
-    for(int i = 0;i < 7;i++) cout << arr[i] << ' ';
+    ll n, m, arr[200005];
+    cin >> n >> m;
+    for(int i = 0;i < n;i++) cin >> arr[i];
+    priority_queue<ll, vector<ll>, greater<ll> > pq;
+    for(int i = 0;i < n;i++){
+        if(pq.size() < m){
+            pq.push(arr[i]);
+        }
+        else{
+            ll tmp = pq.top() + arr[i];
+            pq.pop();
+            pq.push(tmp);
+        }
+    }
+    for(int i = 0;i < m - 1;i++) pq.pop();
+    cout << pq.top() << '\n';
 
     return 0;
 }
