@@ -8,17 +8,12 @@ int main(){
     int n, arr[100005];
     cin >> n;
     for(int i = 0;i < n;i++) cin >> arr[i];
-    sort(arr, arr + n);
-    ll prefix[100005];
-    prefix[0] = arr[0];
-    for(int i = 1;i < n;i++){
-        prefix[i] = arr[i] + prefix[i - 1];
-    }
-    ll total = 0;
+    int dif = 0, minimum = INF;
     for(int i = 0;i < n;i++){
-        total += prefix[i];
+        dif = max(dif, arr[i] - minimum);
+        minimum = min(minimum, arr[i]);
     }
-    cout << total << '\n';
+    cout << dif << '\n';
 
     return 0;
 }

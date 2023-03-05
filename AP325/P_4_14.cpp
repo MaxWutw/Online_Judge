@@ -1,25 +1,23 @@
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-#define INF 2147483647
+#define INF 0x3f3f3f3f
 using namespace std;
-bool cmp(pair<int, int> a, pair<int, int> b){
-    return a.first < b.first;
-}
+typedef long long ll;
 int main(){
     IOS
-    pair<int, int> point[100005];
     int n;
     cin >> n;
-    for(int i = 0;i < n;i++) cin >> point[i].first;
-    for(int i = 0;i < n;i++) cin >> point[i].second;
-    sort(point, point + n, cmp);
-    stack<int> S;
-    S.push(INF);
+    pair<int, int> coord[100005];
+    for(int i = 0;i < n;i++) cin >> coord[i].first;
+    for(int i = 0;i < n;i++) cin >> coord[i].second;
+    sort(coord, coord + n);
+    stack<pair<int, int> > s;
+    s.push({INF, INF});
     for(int i = 0;i < n;i++){
-        while(point[i].second >= S.top()) S.pop();
-        S.push(point[i].second);
+        while(s.top().second <= coord[i].second) s.pop();
+        s.push(coord[i]);
     }
-    cout << S.size() - 1 << '\n';
+    cout << s.size() - 1 << '\n';
 
     return 0;
 }
