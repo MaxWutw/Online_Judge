@@ -4,7 +4,7 @@ using namespace std;
 typedef long long ll;
 int main(){
     IOS
-    cout << std::string::max_size << '\n';
+    
     
     return 0;
 }
