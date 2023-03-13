@@ -3,22 +3,21 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-pair<int, int> f(int arr[], int l, int r){
-    if(l + 1 == r) return {arr[l], arr[l]};
-    int m = (l + r) >> 1;
-    pair<int, int> li = f(arr, l, m), ra = f(arr, m, r);
-    return {min(li.first, ra.first), max(li.second, ra.second)};
+int func(){
+    string str;
+    cin >> str;
+    ll tmp = 0;
+    if(str == "IF") output *= func();
+    else if(str == "END_IF") return tmp;
+    else if(str == "ELSE") func();
 }
 int main(){
     IOS
     int n;
     cin >> n;
-    int arr[100005];
-    for(int i = 0;i < n;i++) cin >> arr[i];
-    pair<int, int> out = f(arr, 0, n);
-    cout << out.first << ' ' << out.second;
+    while(n--){
+        
+    }
 
     return 0;
 }
-// 5   
-// 47 21 8 96 52 15
