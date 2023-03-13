@@ -3,22 +3,20 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-ll inverse(int arr[], int l, int r){
-    int mid = (l + r) >> 1;
-    if(l + 1 >= r) return 0;
-    ll mono = inverse(arr, l, mid) + inverse(arr, mid, r), cross = 0;
-    sort(arr + mid, arr + r);
-    for(int i = l;i < mid;i++){
-        cross += lower_bound(arr + mid, arr + r, arr[i]) - (arr + mid);
-    }
-    return cross + mono;
+int func(){
+    string str;
+    cin >> str;
+    ll tmp = 0;
+    if(str == "IF") output *= func();
+    else if(str == "END_IF") return tmp;
+    else if(str == "ELSE") func();
 }
 int main(){
     IOS
-    int n, arr[100005];
+    int n;
     cin >> n;
-    for(int i = 0;i < n;i++) cin >> arr[i];
-    cout << inverse(arr, 0, n) << '\n';
-    
+    while(n--){
+        
+    }
     return 0;
 }
