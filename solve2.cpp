@@ -5,7 +5,11 @@ using namespace std;
 typedef long long ll;
 int main(){
     IOS
-    cout << "Hello World" << '\n';
+    int arr[100];
+    arr[0] = 10;
+    int idx = 1;
+    for(int i = 0;i < 10;i++) arr[idx++] = 48;
+    for(int i = 0;i < 10;i++) cout << arr[i] << ' ';
+    
 
     return 0;
-}
