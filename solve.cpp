@@ -5,21 +5,16 @@ using namespace std;
 typedef long long ll;
 int main(){
     IOS
-    int t;
-    cin >> t;
-    while(t--){
-        ll n, k;
-        cin >> n >> k;
-        vector<ll> arr(n + 1);
-        ll ans = -1e18;
-        for(int i = 0;i < n;i++) cin >> arr[i];
-        for(int i = max(0LL, n - 2 * k - 1);i < n;i++){
-            for(int j = i + 1;j < n;j++){
-                ans = max(ans,1LL * (i + 1) * (j + 1) - 1LL * k * (arr[i] | arr[j]));
-            }
-        }
-        cout << ans << '\n';
+    int n, cost;
+    cin >> n;
+    int p = 0, pp = 0;
+    for(int i = 0;i < n;i++){
+        cin >> cost;
+        cost += min(p, pp);
+        pp = p;
+        p = cost;
     }
+    cout << cost << '\n';
 
     return 0;
 }
