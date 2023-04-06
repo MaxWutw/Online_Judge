@@ -5,10 +5,18 @@ using namespace std;
 typedef long long ll;
 int main(){
     IOS
-    pair<int, int> arr[10];
-    // for(int i = 0;i < 5;i++) cin >> arr[i].first >> arr[i].second;
-    // sort(arr, arr + 5, [](pair<int, int> &a, pair<int, int> &b){return a.second < b.second;});
-    // for(int i = 0;i < 5;i++) {cout << arr[i].first << ' ' << arr[i].second;cout << '\n';}
+    int number, charge;
+    printf("Enter:");
+    scanf("%d", &number);
+    charge = number * 300;
+    if(charge < 3000){
+        printf("Charge is %d\n", charge);
+    }
+    if(charge >= 3000){
+        int charge2;
+        charge2 = charge * 0.8;
+        printf("Charge is %d\n", charge2);
+    }
 
     return 0;
 }
