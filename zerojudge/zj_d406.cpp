@@ -1,3 +1,4 @@
+// bfs
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define INF 0x3f3f3f3f
@@ -43,7 +44,7 @@ int main(){
                 vis[nx][ny] = vis[x][y] + 1;
             }
         }
-        cout << "Case " << Case++ << '\n';
+        cout << "Case " << Case++ << ":\n";
         for(int i = 0;i < n;i++){
             for(int j = 0;j < m;j++){
                 cout << vis[i][j] << ' ';
