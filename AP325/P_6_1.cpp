@@ -1,4 +1,4 @@
-// dp
+// dp AC (13ms, 1.1MB)
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
@@ -16,6 +16,27 @@ int main(){
         dp[i] = min(dp[i - 1], dp[i - 2]) + arr[i];
 
     cout << dp[n] << '\n';
+
+    return 0;
+}
+// dp O(1) space  AC (10ms, 340KB)
+#include <bits/stdc++.h>
+#define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define INF 0x3f3f3f3f
+using namespace std;
+typedef long long ll;
+int main(){
+    IOS
+    int n, cost;
+    cin >> n;
+    int p = 0, pp = 0;
+    for(int i = 0;i < n;i++){
+        cin >> cost;
+        cost += min(p, pp);
+        pp = p;
+        p = cost;
+    }
+    cout << cost << '\n';
 
     return 0;
 }

@@ -1,14 +1,10 @@
 #include<stdio.h>
 int main(){
-	int integer1, integer2,  sum;
-	printf("Please enter the first integer: ");
-	scanf("%d", &integer1);
-	printf("Please enter the second integer: ");
-	scanf("%d", &integer2);
-	int temp=integer1;
-	integer1=integer2;
-	integer2=temp;
-	printf("integer1 is %d.\n", integer1);
-	printf("integer2 is %d.\n", integer2);
-	return 0;
+    IOS
+    pair<int, int> arr[10];
+    // for(int i = 0;i < 5;i++) cin >> arr[i].first >> arr[i].second;
+    // sort(arr, arr + 5, [](pair<int, int> &a, pair<int, int> &b){return a.second < b.second;});
+    // for(int i = 0;i < 5;i++) {cout << arr[i].first << ' ' << arr[i].second;cout << '\n';}
+    
+    return 0;
 }
