@@ -3,35 +3,27 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-ll n, x, arr[50];
-vector<ll> vec;
-ll ans = 0;
-void rec(ll num, ll idx){
-    if(num > x) return;
-    if(idx == (n / 2 + 1)){
-        vec.push_back(num);
-        return;
+int n, m, k, x, y;
+int arr[25][25];
+unordered_map<ll, ll> m[25];
+void dfs1(int c1, int c2){
+    if(c1 > x || c2 > y) return;
+    if(c1 == x && c2 == y){
+
     }
-    rec(num + arr[idx], idx + 1);
-    rec(num, idx + 1);
-}
-void rec2(ll num, ll idx){
-    if(num > x) return;
-    if(idx >= n){
-        ans += upper_bound(vec.begin(), vec.end(), x - num) - lower_bound(vec.begin(), vec.end(), x - num);
-        return;
-    }
-    rec2(num + arr[idx], idx + 1);
-    rec2(num, idx + 1);
+    dfs1(c1 + 1, c2);
+    dfs(c1, c2 + 1);
 }
 int main(){
     IOS
-    cin >> n >> x;
-    for(int i = 0;i < n;i++) cin >> arr[i];
-    rec(0, 0);
-    sort(vec.begin(), vec.end());
-    rec2(0, n / 2 + 1);
-    cout << ans << '\n';
+    cin >> n >> m >> k;
+    for(int i = 0;i < n;i++){
+        for(int j = 0;j < m;j++){
+            cin >> arr[i][j];
+        }
+    }
+    x = n / 2, y = m / 2;
+    dfs1(0);
 
     return 0;
 }
