@@ -1,37 +1,26 @@
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-#define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-ll n, x, arr[50];
-vector<ll> vec;
-ll ans = 0;
-void rec(ll num, ll idx){
-    if(num > x) return;
-    if(idx == (n / 2 + 1)){
-        vec.push_back(num);
-        return;
+ll n, m, arr[25][25], x, y;
+unordered_map<ll> m[25][25];
+void dfs(int a, int b, ll val){
+    if(a > x || b > y) return;
+    if(a + b == (n + m - 1) >> 1){
+
     }
-    rec(num + arr[idx], idx + 1);
-    rec(num, idx + 1);
-}
-void rec2(ll num, ll idx){
-    if(num > x) return;
-    if(idx >= n){
-        ans += upper_bound(vec.begin(), vec.end(), x - num) - lower_bound(vec.begin(), vec.end(), x - num);
-        return;
-    }
-    rec2(num + arr[idx], idx + 1);
-    rec2(num, idx + 1);
+    dfs(a + 1, b, val ^ arr[a + 1][b]);
+    dfs(a, b + 1, val ^ arr[a][b + 1]);
 }
 int main(){
     IOS
-    cin >> n >> x;
-    for(int i = 0;i < n;i++) cin >> arr[i];
-    rec(0, 0);
-    sort(vec.begin(), vec.end());
-    rec2(0, n / 2 + 1);
-    cout << ans << '\n';
+    cin >> n >> m;
+    for(int i = 0;i < n;i++){
+        for(int j = 0;j < m;j++){
+            cin >> arr[i][j];
+        }
+    }
+    dfs(0, 0);
 
     return 0;
 }
