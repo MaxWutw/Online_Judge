@@ -6,7 +6,7 @@ ll n, m, arr[25][25], x, y;
 unordered_map<ll> m[25][25];
 void dfs(int a, int b, ll val){
     if(a > x || b > y) return;
-    if(a + b == (n + m - 1) >> 1){
+    if(a + b == ((n + m - 1) >> 1)){
 
     }
     dfs(a + 1, b, val ^ arr[a + 1][b]);
