@@ -1,3 +1,4 @@
+// Meet in the middle
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
@@ -5,11 +6,6 @@ typedef long long ll;
 ll n, m, arr[25][25], ans = 0, k;
 map<ll, ll> ma[25][25];
 void dfs(int a, int b, ll val){
-<<<<<<< HEAD
-    if(a > x || b > y) return;
-    if(a + b == ((n + m - 1) >> 1)){
-
-=======
     if(a >= n || b >= m) return;
     if(a + b == (n + m - 1) / 2){
         ma[a][b][val ^ arr[a][b]]++;
@@ -23,7 +19,6 @@ void dfs2(int a, int b, ll val){
     if(a + b == (n + m - 1) / 2){
         ans += ma[a][b][val ^ k];
         return;
->>>>>>> 7c7b4ce7d076913f8e0c948248c7bcb678723378
     }
     dfs2(a - 1, b, val ^ arr[a][b]);
     dfs2(a, b - 1, val ^ arr[a][b]);
