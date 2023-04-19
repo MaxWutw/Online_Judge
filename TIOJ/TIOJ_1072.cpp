@@ -1,12 +1,10 @@
+// greedy
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
 typedef long long ll;
 int main(){
     IOS
-<<<<<<< HEAD
-    
-=======
     int n;
     while(cin >> n && n != 0){
         pair<int, int> arr[10005];
@@ -22,7 +20,6 @@ int main(){
         }
         cout << tp << '\n';
     }
->>>>>>> 7fad2545e4b1c5ff4888ff7226eb686a935ca136
 
     return 0;
 }
