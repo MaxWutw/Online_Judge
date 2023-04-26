@@ -1,3 +1,4 @@
+// unsolved
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
@@ -22,7 +23,7 @@ int main(){
     int ans = 0, cnt[100005];
     memset(cnt, 0, sizeof(cnt));
     while(!q.empty()){
-        int u = q.front;
+        int u = q.front();
         q.pop();
         for(int edge : adj[u]){
             cnt[edge]++;
