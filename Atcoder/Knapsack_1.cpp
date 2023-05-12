@@ -1,3 +1,4 @@
+// dp, optimized
 #include <bits/stdc++.h>
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
@@ -6,23 +7,17 @@ const ll mod = 1e9 + 7;
 ll v[105], w[105], dp[100005];
 int main(){
     IOS
-    ll n, weight;
-    fill(dp, dp + 100005, (ll)1e18);
+    int n, weight;
     cin >> n >> weight;
-    dp[0] = 0;
     for(int i = 0;i < n;i++) cin >> w[i] >> v[i];
+    dp[0] = 0;
     for(int i = 0;i < n;i++){
-        for(int j = 100000;j >= 1;j--){
-            if(j - v[i] >= 0)
-                dp[j] = min(dp[j], dp[j - v[i]] + w[i]);
+        for(int j = weight;j >= 1;j--){
+            if(j - w[i] >= 0)
+                dp[j] = max(dp[j], dp[j - w[i]] + v[i]);
         }
     }
-    ll ans = 0;
-    for(ll i = 1;i <= 100000;i++){
-        if(dp[i] <= weight)
-            ans = max(ans, i);
-    }
-    cout << ans << '\n';
+    cout << dp[weight] << '\n';
 
     return 0;
 }
