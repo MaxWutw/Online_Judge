@@ -3,16 +3,41 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-int main(){
-    IOS
-    int a_1 = 10, b = 10, a_2 = 10;
-    if(0 == a_1 % b){
-        cout << 1 << '\n';
-        if(a_1 % b == a_2 % b){
-            cout << 2 << '\n';
+const int N=105,MaxW=100005;
+int v[N],w[N];
+int dp[MaxW];
+
+void Knapsack(int n,int W){
+
+    for(int i=1;i<=n;i++){ // 遍歷每個物品
+    
+        for(int j=W;j>0;j--){ // 從大到小遍歷重量
+        
+            if(j>=w[i]) dp[j]=max(dp[j],dp[j-w[i]]+v[i]);
         }
     }
-    else cout << 0 << '\n';
+}
+void reKnapsack(int n,int W){
+
+    for(int j=W;j>0;j--){ // 從大到小遍歷重量
+    
+        for(int i=1;i<=n;i++){ // 遍歷每個物品
+        
+            if(j>=w[i]) dp[j]=max(dp[j],dp[j-w[i]]+v[i]);
+        }
+    }
+}
+int main(){
+    IOS
+    dp[0] = 0;
+    v[1] = 15, v[2] = 20, v[3] = 30;
+    w[1] = 1, w[2] = 3, w[3] = 4;
+    Knapsack(3, 4);
+    for(int i = 0;i <= 4;i++) cout << dp[i] << ' ';
+    cout << '\n';
+    memset(dp, 0, sizeof(dp));
+    reKnapsack(3, 4);
+    for(int i = 0;i <= 4;i++) cout << dp[i] << ' ';
 
     return 0;
 }
