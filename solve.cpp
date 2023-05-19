@@ -5,6 +5,7 @@ typedef long long ll;
 int n, m, p, k;
 vector<pair<int, int> > mem[20005], ret[20005];
 bool vis[20005];
+int team[20005];
 void dfs(int st){
     vis[st] = true;
     for(auto e : mem[st]){
