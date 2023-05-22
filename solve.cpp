@@ -50,6 +50,7 @@ int main(){
             mem[a].push_back({b, i});
             mem[b].push_back({a, i});
         }
+        
     }
     vector<int> ans;
     for(int i = 0;i < 3 && !check(p);i++){
