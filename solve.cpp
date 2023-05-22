@@ -14,7 +14,7 @@ bool dfs(int st, int idx){
             continue;
         if(vis[e.first] && team[st] == team[e.first]) return false;
         if(!vis[e.first]){
-            team[e.first] = 1 + (1 == team[e.first]);
+            team[e.first] = 1 + (1 == team[st]);
             judge = dfs(e.first, idx);
         }
     }
@@ -43,7 +43,7 @@ int main(){
         mem[b].push_back({a, 0});
     }
     cin >> p >> k;
-    for(int i = 0;i < p;i++){
+    for(int i = 1;i <= p;i++){
         for(int j = 0;j < k;j++){
             int a, b;
             cin >> a >> b;
