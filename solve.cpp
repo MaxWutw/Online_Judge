@@ -2,73 +2,38 @@
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
 typedef long long ll;
-int n, m, p, k;
-vector<pair<int, int> > mem[20005];
-bool vis[20005], ill[200005];
-int team[20005];
-bool dfs(int st, int idx){
-    vis[st] = true;
-    bool judge = true;
-    for(auto e : mem[st]){
-        if(e.second > idx || ill[e.second])
-            continue;
-        if(vis[e.first] && team[st] == team[e.first]) return false;
-        if(!vis[e.first]){
-            team[e.first] = 1 + (1 == team[st]);
-            judge = dfs(e.first, idx);
+vector<int> vec[200005], ans;
+int vis[100005];
+stack<int> s;
+void dfs(int st){
+    vis[st] = 2;
+    s.push(st);
+    for(auto e : vec[st]){
+        if(!vis[st]) dfs(e);
+        if(vis[e] == 2 && ans.empty()){
+            ans.push_back(e);
+            while(!s.empty()){
+                ans.push_back(s.top());
+                if(s.top() == e) break;
+                s.pop();
+            }
+            reverse(ans.begin(), ans.end());
+            return;
         }
     }
-    return judge;
-}
-bool check(int idx){
-    memset(vis, 0, sizeof(vis));
-    memset(team, 0, sizeof(team));
-    for(int i = 0;i < n;i++){
-        if(!vis[i]){
-            team[i] = 1;
-            if(!dfs(i, idx))
-                return false;
-        }
-    }
-    return true;
+    vis[st] = 1;
+    if()
 }
 int main(){
     IOS
-    memset(ill, 0, sizeof(ill));
+    memset(vis, 0, sizeof(vis));
+    int n, m;
     cin >> n >> m;
     for(int i = 0;i < m;i++){
         int a, b;
         cin >> a >> b;
-        mem[a].push_back({b, 0});
-        mem[b].push_back({a, 0});
+        vec[a].push_back(b);
     }
-    cin >> p >> k;
-    for(int i = 1;i <= p;i++){
-        for(int j = 0;j < k;j++){
-            int a, b;
-            cin >> a >> b;
-            mem[a].push_back({b, i});
-            mem[b].push_back({a, i});
-        }
-        
-    }
-    vector<int> ans;
-    for(int i = 0;i < 3 && !check(p);i++){
-        int l = 0, r = p;
-        while(l < r){
-            int mid = (l + r) >> 1;
-            if(check(mid))
-                l = mid + 1;
-            else
-                r = mid;
-        }
-        if(r > 0){
-            ill[r] = true;
-            ans.push_back(r);
-        }
-    }
-    for(auto i : ans) cout << i << ' ';
-    cout << '\n';
 
     return 0;
 }
