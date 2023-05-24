@@ -4,6 +4,6 @@ using namespace std;
 typedef long long ll;
 int main(){
     IOS
-
+    printf("%f", sqrt(4));
     return 0;
 }
