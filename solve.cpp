@@ -3,23 +3,30 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-ll arr[3005], dp[3005][3005], pre[3005];
+ll n, x, w[22];
+pair<ll, ll> dp[1 << 22];
 int main(){
     IOS
-    int n;
-    cin >> n;
-    for(int i = 1;i <= n;i++){
-        cin >> arr[i];
-        dp[i][i] = arr[i];
-        pre[i] = pre[i - 1] + arr[i];
-    }
-    for(int d = 1;d <= n;d++){
-        for(int l = 1;l + d <= n;l++){
-            int r = l + d;
-            dp[l][r] = max(arr[l] + pre[r] - pre[l] - dp[l + 1][r], arr[r] + pre[r - 1] - pre[l - 1] - dp[l][r - 1]);
+    cin >> n >> x;
+    for(int i = 0;i < n;i++) cin >> w[i];
+    for(int i = 0;i < n;i++) dp[i] = {n + 1, 0};
+    dp[0].first = 1, dp[0].second = 0;
+    for(int mask = 0;mask < (1 << n);mask++){
+        for(int i = 0;i < n;i++){
+            if(mask & (1 << i)){
+                pair<ll, ll> tmp = dp[(mask ^ (1 << i))];
+                if(tmp.second + w[i] > x){
+                    tmp = {tmp.first + 1, w[i]};
+                }
+                else{
+                    tmp.second += w[i];
+                }
+                dp[mask] = min(dp[mask], tmp);
+            }
         }
     }
-    cout << dp[1][n] - (pre[n] - dp[1][n]) << '\n';
+    for(int i = 0;i < 10;i++) cout << dp[i].first << ' ';
+    // cout << dp[(1 << n) - 1].first << '\n';
 
     return 0;
 }
