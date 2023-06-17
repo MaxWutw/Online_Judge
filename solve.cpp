@@ -5,6 +5,29 @@ using namespace std;
 typedef long long ll;
 int main(){
     IOS
+<<<<<<< HEAD
+=======
+    cin >> n >> x;
+    for(int i = 0;i < n;i++) cin >> w[i];
+    for(int i = 0;i < (1 << n);i++) dp[i] = {n + 1, 0};
+    dp[0] = {1, 0};
+    for(int mask = 0;mask < (1 << n);mask++){
+        for(int i = 0;i < n;i++){
+            if(mask & (1 << i)){
+                pair<ll, ll> tmp = dp[mask ^ (1 << i)];
+                if(tmp.second + w[i] > x){
+                    tmp = {tmp.first + 1, w[i]};
+                }
+                else{
+                    tmp.second += w[i];
+                }
+                dp[mask] = min(dp[mask], tmp);
+            }
+        }
+    }
+    // for(int i = 0;i < (1 << n);i++) cout << dp[i].first << ' ';
+    cout << dp[(1 << n) - 1].first << '\n';
+>>>>>>> e1c1584b361651cf36905c33e314195fb924fab8
 
     return 0;
 }
