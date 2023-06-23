@@ -2,23 +2,20 @@
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
 typedef long long ll;
+pair<int, int> arr[200005];
 int main(){
     IOS
-    int arr[100];
     int n;
+    vector<int> v;
     cin >> n;
-    for(int i = 0;i < n;i++) cin >> arr[i];
-    int dp[100];
-    for(int i = 0;i < n;i++) dp[i] = 1;
+    for(int i = 0;i < n;i++) cin >> arr[i].first >> arr[i].second;
+    sort(arr, arr + n, [&](pair<int, int> a, pair<int, int> b){return a.first < b.first;});
     for(int i = 0;i < n;i++){
-        for(int j = 0;j < i;j++){
-            if(arr[i] > arr[j])
-                dp[i] = max(dp[j] + 1, dp[i]);
-        }
+        auto idx = upper_bound(v.begin(), v.end(), arr[i].second) - v.begin();
+        if(v.empty() || v.back() <= arr[idx].second) v.push_back(arr[i].second);
+        else v[idx] = arr[i].second;
     }
-    int ans = 1;
-    for(int i = 0;i < n;i++) ans = max(ans, dp[i]);
-    cout << ans << '\n';
+    cout << v.size() << '\n';
 
     return 0;
 }
