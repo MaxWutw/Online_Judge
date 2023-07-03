@@ -3,30 +3,18 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-ll n, x, w[22];
-pair<ll, ll> dp[1 << 22];
 int main(){
     IOS
-    cin >> n >> x;
-    for(int i = 0;i < n;i++) cin >> w[i];
-    for(int i = 0;i < (1 << n);i++) dp[i] = {n + 1, 0};
-    dp[0] = {1, 0};
-    for(int mask = 0;mask < (1 << n);mask++){
-        for(int i = 0;i < n;i++){
-            if(mask & (1 << i)){
-                pair<ll, ll> tmp = dp[mask ^ (1 << i)];
-                if(tmp.second + w[i] > x){
-                    tmp = {tmp.first + 1, w[i]};
-                }
-                else{
-                    tmp.second += w[i];
-                }
-                dp[mask] = min(dp[mask], tmp);
-            }
+    int n, k;
+    while(cin >> n >> k){
+        if(k > n) k = n;
+        int arr[1000005];
+        for(int i = 0;i < n;i++) cin >> arr[i];
+        deque<pair<int, int> > dq;
+        for(int i = 0, j = 0;i < n;i++){
+            
         }
     }
-    // for(int i = 0;i < (1 << n);i++) cout << dp[i].first << ' ';
-    cout << dp[(1 << n) - 1].first << '\n';
 
     return 0;
 }
