@@ -6,31 +6,36 @@ typedef long long ll;
 const ll mod = 1e9 + 7;
 const int N = 2e5 + 5;
 int n;
+ll arr[N], dp[N], cost[N];
 vector<int> vec[N];
-int dp[N], ans = -1;
-void dfs(int cur, int pre){
-    int mx = 0, smx = 0;
+void dfs(int cur, int pre, int depth){
     for(auto &e : vec[cur]){
         if(e == pre) continue;
-        dfs(e, cur);
-        if(dp[e] > mx) smx = mx, mx = dp[e];
-        else if(dp[e] > smx) smx = dp[e];
+        dfs(e, cur, depth + 1);
+        cost[e] += (depth * arr[cur]);
     }
-    dp[cur] = mx + 1;
-    ans = max(ans, mx + smx);
+}
+void dfs2(int cur, int pre){
+    for(auto &e : vec[cur]){
+        if(e == cur) continue;
+        dp[e] = dp[cur] + cost[1] - (2 * dp[e]);
+        dfs(e, cur);
+    }
 }
 int main(){
     IOS
     memset(dp, 0, sizeof(dp));
     cin >> n;
-    for(int i = 0;i < n - 1;i++){
+    for(int i = 1;i <= n;i++) cin >> arr[i];
+    for(int i = 1;i < n;i++){
         int a, b;
         cin >> a >> b;
         vec[a].push_back(b);
         vec[b].push_back(a);
     }
-    dfs(1, 1);
-    cout << ans << '\n';
+    dfs(1, 1, 0);
+    dfs2(1, 1, 0);
+    
 
     return 0;
 }
