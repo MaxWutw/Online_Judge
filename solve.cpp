@@ -3,6 +3,7 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
+<<<<<<< HEAD
 const ll mod = 1e9 + 7;
 const int N = 2e5 + 5;
 ll n, q, b, arr[N], cnt[N], ans[N], tol = 0;
@@ -57,6 +58,10 @@ int main(){
     }
     for(int i = 0;i < q;i++)
         cout << ans[i] << '\n';
+=======
+int main(){
+    IOS
+>>>>>>> c4f48ff3557f56e4632f7df6b7c8f4d11f5bf84d
 
     return 0;
 }
