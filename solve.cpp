@@ -3,20 +3,6 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-<<<<<<< HEAD
-int main(){
-    IOS
-    int n, k;
-    while(cin >> n >> k){
-        if(k > n) k = n;
-        int arr[1000005];
-        for(int i = 0;i < n;i++) cin >> arr[i];
-        deque<pair<int, int> > dq;
-        for(int i = 0, j = 0;i < n;i++){
-            
-        }
-    }
-=======
 const ll mod = 1e9 + 7;
 const int N = 2e5 + 5;
 ll n, q, b, arr[N], cnt[N], ans[N], tol = 0;
@@ -71,7 +57,6 @@ int main(){
     }
     for(int i = 0;i < q;i++)
         cout << ans[i] << '\n';
->>>>>>> e3f9e2f0b52fa071c54407633a6dc92a7dfa8654
 
     return 0;
 }
