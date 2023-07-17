@@ -3,65 +3,36 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
-<<<<<<< HEAD
 const ll mod = 1e9 + 7;
 const int N = 2e5 + 5;
-ll n, q, b, arr[N], cnt[N], ans[N], tol = 0;
-vector<int> dis;
-struct Query_base{
-    ll l, r, id;
-    bool operator < (const Query_base a){
-        return (l / b == a.l / b ? r < a.r : l / b < a.l / b);
-    }
-};
-ll discretization(int x){
-    return lower_bound(dis.begin(), dis.end(), x) - dis.begin(); // discretization
+int t;
+ll dsu[(2 * N) + 5];
+int sz[N + 5];
+int Find(int x){
+    if(dsu[x] != x) dsu[x] = Find(dsu[x]);
+    return dsu[x];
 }
-void add(int x){
-    if(cnt[x] == 0) tol++;
-    cnt[x]++;
-}
-void remove(int x){
-    if(cnt[x] == 1) tol--;
-    cnt[x]--;
+void Union(int x, int y){
+    x = Find(x);
+    y = Find(y);
+    if(sz[x] < sz[y]) swap(x, y);
+    dsu[y] = x;
+    sz[x] += sz[y];
 }
 int main(){
     IOS
-    memset(cnt, 0, sizeof(cnt));
-    cin >> n >> q;
-    for(int i = 0;i < n;i++){
-        cin >> arr[i];
-        dis.push_back(arr[i]);
+    cin >> t;
+    while(t--){
+        memset(sz, 0, sizeof(sz));
+        int n, m;
+        cin >> n >> m;
+        for(int i = 0;i < m;i++){
+            int a, b;
+            string c;
+            cin >> a >> b >> c;
+            Union()
+        }
     }
-    sort(dis.begin(), dis.end());
-    dis.erase(unique(dis.begin(), dis.end()), dis.end());
-    for(int i = 0;i < n;i++) arr[i] = discretization(arr[i]);
-    b = sqrt(q);
-    vector<Query_base> query;
-    query.clear(), query.resize(q);
-    for(int i = 0;i < q;i++){
-        int ql, qr;
-        cin >> ql >> qr;
-        --ql, --qr; // change to 0-base
-        query[i] = {ql, qr, i};
-    }
-    sort(query.begin(), query.end());
-    int l = 0, r = 0;
-    // cnt[arr[0]] = 1;
-    add(arr[0]);
-    for(auto &q : query){
-        while(l > q.l) l--, add(arr[l]); // extend
-        while(r < q.r) r++, add(arr[r]); // extend
-        while(l < q.l) remove(arr[l]), l++; // diminish
-        while(r > q.r) remove(arr[r]), r--; // diminish
-        ans[q.id] = tol;
-    }
-    for(int i = 0;i < q;i++)
-        cout << ans[i] << '\n';
-=======
-int main(){
-    IOS
->>>>>>> c4f48ff3557f56e4632f7df6b7c8f4d11f5bf84d
 
     return 0;
 }
