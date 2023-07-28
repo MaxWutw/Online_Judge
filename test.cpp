@@ -10,8 +10,8 @@ void query(int l, int r){
 }
 int main(){
     IOS
-    int l = 10, r = 9;
-    query(--l, --r);
+    cout << (18 & (1 << 1)) << '\n';
+    cout << (1 << 1) << '\n';
 
     return 0;
 }
