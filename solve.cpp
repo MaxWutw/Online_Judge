@@ -3,6 +3,7 @@
 #define INF 0x3f3f3f3f
 using namespace std;
 typedef long long ll;
+const int N = 5e5 + 5;
 int main(){
     IOS
     
