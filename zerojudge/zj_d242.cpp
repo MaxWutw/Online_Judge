@@ -1,3 +1,4 @@
+// LIS (NlogN)
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -16,7 +17,6 @@ signed main(){
     int tmp;
     while(cin >> tmp)
         arr.push_back(tmp);
-    // for(int i = 0;i < arr.size();i++) cout << arr[i] << ' ';
     for(int i = 0;i < arr.size();i++){
         int p = lower_bound(v.begin(), v.end(), arr[i]) - v.begin();
         if(p == v.size()){
