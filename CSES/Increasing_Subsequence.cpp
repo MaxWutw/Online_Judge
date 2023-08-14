@@ -40,9 +40,7 @@ signed main(){
         update(arr[i], leng);
     }
     int ans = 1;
-    // for(int i = 0;i <= N;i++) ans = max(ans, dp[i]);
-    for(int i = 1;i <= n;i++) cout << dp[arr[i]] << ' ';
-    cout << '\n';
+    for(int i = 0;i <= N;i++) ans = max(ans, dp[i]);
     cout << ans << '\n';
 
     return 0;
