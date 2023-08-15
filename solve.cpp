@@ -8,42 +8,38 @@
 using namespace std;
 using namespace __gnu_pbds;
 typedef long long ll;
-const int N = 2e5 + 5;
-vector<int> b;
-int arr[N + 5], dp[N + 5], lis = 1, n;
+const int N = 1e5 + 5;
+int bit[N + 5];
 int query(int idx){
-    int ans = 0;
+    int ret = 0;
     for(int i = idx;i > 0;i-=lowbit(i)){
-        ans = max(dp[i], ans);
+        ret += bit[i];
     }
-    return ans;
+    return ret;
 }
-void update(int idx, int val){
+void update(int idx){
     for(int i = idx;i <= N;i+=lowbit(i)){
-        dp[i] = max(dp[i], val);
+        bit[i]++;
     }
 }
 signed main(){
     IOS
-    cin >> n;
-    for(int i = 1;i <= n;i++){
-        cin >> arr[i];
-        b.push_back(arr[i]);
+    int n, cnt = 1;
+    while(cin >> n && n){
+        int ans = 0, arr[N];
+        memset(bit, 0, sizeof(bit));
+        vector<int> b;
+        for(int i = 0;i < n;i++) cin >> arr[i], b.push_back(arr[i]);
+        sort(b.begin(), b.end());
+        b.resize(unique(b.begin(), b.end()) - b.begin());
+        for(int i = 0;i < n;i++)
+            arr[i] = lower_bound(b.begin(), b.end(), arr[i]) - b.begin() + 1;
+        for(int i = 0;i < n;i++){
+            ans += (i - query(arr[i]));
+            update(arr[i]);
+        }
+        cout << "Case #" << cnt++ << ": " << ans << '\n';
     }
-    sort(b.begin(), b.end());
-    b.resize(unique(b.begin(), b.end()) - b.begin());
-    for(int i = 1;i <= n;i++)
-        arr[i] = lower_bound(b.begin(), b.end(), arr[i]) - b.begin() + 1;
-    for(int i = 0;i <= N;i++) dp[i] = 0;
-    for(int i = 1;i <= n;i++){
-        int leng = query(arr[i] - 1) + 1;
-        update(arr[i], leng);
-    }
-    int ans = 1;
-    // for(int i = 0;i <= N;i++) ans = max(ans, dp[i]);
-    for(int i = 1;i <= n;i++) cout << dp[arr[i]] << ' ';
-    cout << '\n';
-    cout << ans << '\n';
 
     return 0;
 }
