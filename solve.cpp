@@ -33,13 +33,6 @@ void query(int pos, int l, int r, int ql, int qr){
 }
 signed main(){
     IOS
-    cin >> n >> q;
-    for(int i = 1;i <= n;i++) cin >> arr[i];
-    while(q--){
-        int a, b;
-        cin >> a >> b;
-        cout << query(1, 1, n, a, b);
-    }
 
     return 0;
 }
