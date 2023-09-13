@@ -10,29 +10,55 @@
 using namespace std;
 using namespace __gnu_pbds;
 typedef long long ll;
-const int N = 1e5 + 5;
-int n, q, arr[N];
-struct Node{
-    int right, left, mx, sum, ans;
-}seg[N * 4 + 5];
-void build(int pos, int l, int r){
-    if(l == r){
-        seg[pos] = {arr[l], arr[l], arr[l], arr[l]};
-        return;
+const int N = 3e4 + 5;
+int n, q, arr[N], dis[N], in[N];
+vector<int> vec[N];
+pair<int, int> ST[30][N];
+vector<pair<int, int> > ett;
+void dfs(int s, int dep){
+    in[s] = ett.size();
+    dis[s] = dep;
+    ett.push_back({dep, s});
+    for(auto e : vec[s]){
+        dfs(e, dep + 1);
+        ett.push_back({dep, s});
     }
-    int mid = (l + r) >> 1;
-    build(L(pos), l, mid);
-    build(R(pos), mid + 1, r);
-    modify(seg[pos], seg[L(pos)], seg[R(pos)]);
+    ett.push_back({dep, s});
 }
-void modify(int pos, int l, int r, int idx, int val){
-
+void build(){
+    for(int i = 0;i < ett.size();i++)
+        ST[0][i] = {ett[i].first, ett[i].second};
+    for(int i = 1;i <= __lg(ett.size());i++){
+        for(int j = 0;j < ett.size();j++){
+            ST[i][j] = min(ST[i - 1][j], ST[i - 1][j + (1 << (i - 1))]);
+        }
+    }
 }
-void query(int pos, int l, int r, int ql, int qr){
-
+pair<int, int> query(int l, int r){
+    int lg = __lg(r - l + 1);
+    pair<int, int> res = min(ST[lg][l], ST[lg][r - (1 << lg) + 1]);
+    return res;
 }
 signed main(){
     IOS
+<<<<<<< HEAD
+=======
+    cin >> n >> q;
+    for(int i = 0;i <= n;i++) vec[i].clear();
+    for(int i = 1;i <= n;i++){
+        int inp;
+        while(cin >> inp && inp) vec[i].push_back(inp);
+    }
+    dfs(1, 1);
+    build();
+    int a, b;
+    while(q--){
+        cin >> a >> b;
+        if(in[a] > in[b]) swap(in[a], in[b]);
+        auto res = query(in[a], in[b]);
+        cout << res.second << ' ' << dis[a] + dis[b] - 2 * dis[res.second] << '\n';
+    }
+>>>>>>> 600d94a374d88afb3541768196f9aa77c469173e
 
     return 0;
 }
