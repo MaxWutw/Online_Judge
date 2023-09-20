@@ -11,7 +11,7 @@ using namespace std;
 using namespace __gnu_pbds;
 typedef long long ll;
 const int N = 1e5 + 5;
-int n, m, sz[N], p[N];
+int n, m, sz[N], p[N], ans[N];
 pair<int, int> query[N];
 int Find(int a){
     if(a == p[a]) return a;
@@ -36,8 +36,14 @@ signed main(){
         sz[i] = 1;
         p[i] = i;
     }
-    for(int i = 0;i < m;i++) cin >> query[i].first >> query[i].second;
+    for(int i = 1;i <= m;i++) cin >> query[i].first >> query[i].second;
+    for(int i = m;i >= 1;i++){
+        if(Find(query[i].first) != Find(query[i].second)){
+            p[query[i].second] = query[i].first;
 
+        }
+        else ans[i - 1] = ans[i];
+    }
 
     return 0;
 }
