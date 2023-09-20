@@ -10,52 +10,34 @@
 using namespace std;
 using namespace __gnu_pbds;
 typedef long long ll;
-const int N = 3e4 + 5;
-int n, q, arr[N], dis[N], in[N];
-vector<int> vec[N];
-pair<int, int> ST[30][N];
-vector<pair<int, int> > ett;
-void dfs(int s, int dep){
-    in[s] = ett.size();
-    dis[s] = dep;
-    ett.push_back({dep, s});
-    for(auto e : vec[s]){
-        dfs(e, dep + 1);
-        ett.push_back({dep, s});
-    }
-    ett.push_back({dep, s});
+const int N = 1e5 + 5;
+int n, m, sz[N], p[N];
+pair<int, int> query[N];
+int Find(int a){
+    if(a == p[a]) return a;
+    return p[a] = Find(p[a]);
 }
-void build(){
-    for(int i = 0;i < ett.size();i++)
-        ST[0][i] = {ett[i].first, ett[i].second};
-    for(int i = 1;i <= __lg(ett.size());i++){
-        for(int j = 0;j < ett.size();j++){
-            ST[i][j] = min(ST[i - 1][j], ST[i - 1][j + (1 << (i - 1))]);
-        }
+void Union(int a, int b){
+    a = Find(a);
+    b = Find(b);
+    if(sz[a] < sz[b]){
+        sz[b] += sz[a];
+        p[a] = p[b];
     }
-}
-pair<int, int> query(int l, int r){
-    int lg = __lg(r - l + 1);
-    pair<int, int> res = min(ST[lg][l], ST[lg][r - (1 << lg) + 1]);
-    return res;
+    else{
+        sz[a] += sz[b];
+        p[b] = p[a];
+    }
 }
 signed main(){
     IOS
-    cin >> n >> q;
-    for(int i = 0;i <= n;i++) vec[i].clear();
+    cin >> n >> m;
     for(int i = 1;i <= n;i++){
-        int inp;
-        while(cin >> inp && inp) vec[i].push_back(inp);
+        sz[i] = 1;
+        p[i] = i;
     }
-    dfs(1, 1);
-    build();
-    int a, b;
-    while(q--){
-        cin >> a >> b;
-        if(in[a] > in[b]) swap(in[a], in[b]);
-        auto res = query(in[a], in[b]);
-        cout << res.second << ' ' << dis[a] + dis[b] - 2 * dis[res.second] << '\n';
-    }
+    for(int i = 0;i < m;i++) cin >> query[i].first >> query[i].second;
+
 
     return 0;
 }

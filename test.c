@@ -1,20 +1,10 @@
 #include <stdio.h>
-#include <stdlib.h>
-int foo(){
-    int n;
-    n = 9382;
-    return n;
-}
-void bar(){
-    int nb;
-    nb = 482;
-}
-int mian(){
-    // int *ptr;
-    int ptr = foo();
-    printf("%d", ptr);
-    bar();
-    printf("%d", ptr);
+int main(){
+    int a =27.63;
+    int b = 35.45;
+    int sum = 0;
+    sum = a + b;
+    printf("%d + %d = %i\n", a, b, sum);
 
     return 0;
 }
