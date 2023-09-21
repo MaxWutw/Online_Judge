@@ -1,20 +1,9 @@
 #include <stdio.h>
-#include <stdlib.h>
-int foo(){
-    int n;
-    n = 9382;
-    return n;
-}
-void bar(){
-    int nb;
-    nb = 482;
-}
-int mian(){
-    // int *ptr;
-    int ptr = foo();
-    printf("%d", ptr);
-    bar();
-    printf("%d", ptr);
+#include <string.h>
+int main(){
+    char str[10];
+    scanf("%s", str);
+    printf("%c%c%c", str[1], str[0], str[2]);
 
     return 0;
 }

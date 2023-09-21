@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
+// #include <ext/pb_ds/assoc_container.hpp>
+// #include <ext/pb_ds/tree_policy.hpp> 
 #define IOS ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define INF 0x3f3f3f3f
 #define int long long
@@ -8,7 +8,7 @@
 #define L(x) (x << 1)
 #define R(x) ((x << 1) | 1)
 using namespace std;
-using namespace __gnu_pbds;
+// using namespace __gnu_pbds;
 typedef long long ll;
 const int N = 3e4 + 5;
 int n, q, arr[N], dis[N], in[N];
@@ -28,21 +28,19 @@ void dfs(int s, int dep){
 void build(){
     for(int i = 0;i < ett.size();i++)
         ST[0][i] = {ett[i].first, ett[i].second};
-    for(int i = 1;i <= __lg(ett.size());i++){
+    for(int i = 1;i <= log2(ett.size());i++){
         for(int j = 0;j < ett.size();j++){
             ST[i][j] = min(ST[i - 1][j], ST[i - 1][j + (1 << (i - 1))]);
         }
     }
 }
 pair<int, int> query(int l, int r){
-    int lg = __lg(r - l + 1);
+    int lg = log2(r - l + 1);
     pair<int, int> res = min(ST[lg][l], ST[lg][r - (1 << lg) + 1]);
     return res;
 }
 signed main(){
     IOS
-<<<<<<< HEAD
-=======
     cin >> n >> q;
     for(int i = 0;i <= n;i++) vec[i].clear();
     for(int i = 1;i <= n;i++){
@@ -54,11 +52,10 @@ signed main(){
     int a, b;
     while(q--){
         cin >> a >> b;
-        if(in[a] > in[b]) swap(in[a], in[b]);
+        if(in[a] > in[b]) swap(a, b);
         auto res = query(in[a], in[b]);
         cout << res.second << ' ' << dis[a] + dis[b] - 2 * dis[res.second] << '\n';
     }
->>>>>>> 600d94a374d88afb3541768196f9aa77c469173e
 
     return 0;
 }
