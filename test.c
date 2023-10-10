@@ -1,10 +1,27 @@
 #include <stdio.h>
+#include <stdint.h>
 int main(){
-    int a =27.63;
-    int b = 35.45;
-    int sum = 0;
-    sum = a + b;
-    printf("%d + %d = %i\n", a, b, sum);
+    int32_t n;
+    printf("Please enter an odd number: ");
+    scanf("%d", &n);
+    for(int i = 1;i <= n;i++){
+        for(int j = 1;j <= n - i;j++){
+            printf(" ");
+        }
+        for(int k = 1;k <= (2 * i) - 1;k++){
+            printf("*");
+        }
+        printf("\n");
+    }
+    for(int i = 1;i < n;i++){
+        for(int j = 1;j <= i;j++){
+            printf(" ");
+        }
+        for(int k = 1;k <= (2 * (n - i)) - 1;k++){
+            printf("*");
+        }
+        printf("\n");
+    }
 
     return 0;
 }
