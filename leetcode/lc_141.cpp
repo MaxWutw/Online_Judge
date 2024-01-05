@@ -1,4 +1,4 @@
-// two pointers
+// b pointers
 /**
  * Definition for singly-linked list.
  * struct ListNode {
