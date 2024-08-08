@@ -4,9 +4,11 @@
 using namespace std;
 typedef long long ll;
 int main(){
-    ll v, t;
-    while(cin >> v >> t){
-        cout << 2 * v * t << '\n';
+    IOS
+    int t;
+    cin >> t;
+    while(t--){
+        
     }
 
     return 0;
